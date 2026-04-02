@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anshika | Frontend Developer</title>
+
+<style>
+:root {
+  --bg: #0f172a;
+  --text: white;
+  --primary: #38bdf8;
+  --card: rgba(255,255,255,0.05);
+}
+
+.light {
+  --bg: #f4f4f4;
+  --text: #111;
+  --card: rgba(0,0,0,0.05);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  transition: 0.3s;
+}
+
+/* NAV */
+nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 30px;
+  position: sticky;
+  top: 0;
+  backdrop-filter: blur(10px);
+  background: rgba(0,0,0,0.6);
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+}
+
+nav ul li {
+  margin-left: 20px;
+}
+
+nav a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.menu {
+  display: none;
+}
+
+/* HERO */
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero span {
+  color: var(--primary);
+}
+
+.btn {
+  margin-top: 20px;
+  padding: 10px 25px;
+  background: var(--primary);
+  color: black;
+  border-radius: 5px;
+  text-decoration: none;
+}
+
+/* SECTION */
+section {
+  padding: 60px 20px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+/* PROJECT */
+.projects {
+  display: grid;
+  gap: 20px;
+}
+
+.project-card {
+  background: var(--card);
+  padding: 20px;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+.project-card:hover {
+  transform: scale(1.02);
+}
+
+.project-card img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+/* CONTACT FORM */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input, textarea {
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  nav ul {
+    display: none;
+  }
+}
+
+/* ANIMATION */
+.hidden {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: 0.6s;
+}
+
+.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+
+</head>
+<body>
+
+<nav>
+  <h2>Anshika</h2>
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section id="home" class="hero">
+  <h1>Hi, I'm <span>Anshika Tripathi</span></h1>
+  <h2 id="typing"></h2>
+  <a href="#projects" class="btn">View Projects</a>
+  <a href="resume.pdf.pdf" class="btn">Download CV</a>
+</section>
+
+<section id="projects">
+  <h2 class="hidden">Projects</h2>
+
+  <div class="projects">
+    <div class="project-card hidden">
+      <img src="https://via.placeholder.com/400x200">
+      <h3>Green Basket</h3>
+      <p>Responsive grocery website with cart.</p>
+      <a href="https://github.com/aanshiika">GitHub</a>
+    </div>
+
+    <div class="project-card hidden">
+      <img src="https://via.placeholder.com/400x200">
+      <h3>Portfolio</h3>
+      <p>Personal developer portfolio.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="hidden">
+  <h2>Contact Me</h2>
+
+  <form>
+    <input type="text" placeholder="Your Name">
+    <input type="email" placeholder="Your Email">
+    <textarea placeholder="Message"></textarea>
+    <button class="btn">Send</button>
+  </form>
+
+  <p>Email: anshik42scs@jnu.ac.in</p>
+  <p>
+    <a href="https://www.linkedin.com/in/anshika-tripathi-048583400">LinkedIn</a>
+  </p>
+</section>
+
+<footer>
+  <p>© 2026 Anshika</p>
+</footer>
+
+<script>
+// typing
+const text = "Frontend Developer";
+let i = 0;
+function type(){
+  if(i < text.length){
+    document.getElementById("typing").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(type,100);
+  }
+}
+type();
+
+// animation
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add("show");
+    }
+  });
+});
+document.querySelectorAll(".hidden").forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
